@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Card from "./Card";
 import Select from "./Select";
+import Countdown from "./Countdown";
 import { displayDate } from "../utils/date";
 import { rocketFilters, filterDataBy } from "../utils/filters";
 
-const CardList = ({ rockets }) => {
+const CardList = ({ rockets, launchNext }) => {
   const [filter, setFilter] = useState(null);
   const [filteredRockets, setFilteredRockets] = useState(rockets);
 
@@ -19,18 +20,17 @@ const CardList = ({ rockets }) => {
   return (
     <>
       <div className="max-w-4xl m-auto">
-        <Select
-          className="mb-4 block"
-          label="Sort by"
-          value={filter}
-          onChange={handleFilter}
-        >
-          {Object.entries(rocketFilters).map(([filterName, values]) => (
-            <option key={filterName} value={filterName}>
-              {values.label}
-            </option>
-          ))}
-        </Select>
+        <div className="flex mb-4 justify-between items-center">
+          <Countdown launchDate={launchNext.launch_date_local} />
+          <Select label="Sort by" value={filter} onChange={handleFilter}>
+            {Object.entries(rocketFilters).map(([filterName, values]) => (
+              <option key={filterName} value={filterName}>
+                {values.label}
+              </option>
+            ))}
+          </Select>
+        </div>
+
         {filteredRockets.map((rocket) => (
           <div key={rocket.id} className="mb-10">
             <Card
