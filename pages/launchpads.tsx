@@ -1,11 +1,10 @@
 import Head from "next/head";
-import { useEffect, useMemo } from "react";
 import { gql } from "@apollo/client";
 import client from "../lib/apollo";
 import Card from "../components/Card";
-import CardList from "../components/CardList";
+import { displayDistance } from "../utils/displayDistance";
 
-export default function Home({ launchNext, rockets }) {
+export default function Home({ launchpads }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -14,7 +13,20 @@ export default function Home({ launchNext, rockets }) {
       </Head>
 
       <main className="px-20 container">
-        <CardList rockets={rockets} launchNext={launchNext} />
+        {launchpads.map((launchpad) => (
+          <div key={launchpad.id} className="mb-10">
+            <Card
+              name={launchpad.name}
+              description={launchpad.details}
+              metaData={[
+                `${displayDistance(
+                  launchpad.location.longitude,
+                  launchpad.location.latitude,
+                )}km from factory Ett`,
+              ]}
+            />
+          </div>
+        ))}
       </main>
     </div>
   );
@@ -23,23 +35,16 @@ export default function Home({ launchNext, rockets }) {
 export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
-      query Countries {
-        launchNext {
-          details
-          launch_date_unix
-          launch_date_local
-        }
-        rockets {
-          id
+      query LaunchPads {
+        launchpads {
+          location {
+            longitude
+            latitude
+            name
+          }
           name
-          description
-          first_flight
-          height {
-            meters
-          }
-          landing_legs {
-            number
-          }
+          details
+          id
         }
       }
     `,
@@ -47,8 +52,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      launchNext: data.launchNext,
-      rockets: data.rockets,
+      launchpads: data.launchpads,
     },
   };
 }

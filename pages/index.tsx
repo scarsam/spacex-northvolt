@@ -23,7 +23,7 @@ export default function Home({ launchNext, rockets }) {
 export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
-      query Countries {
+      query Rockets {
         launchNext {
           details
           launch_date_unix
