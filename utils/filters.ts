@@ -1,13 +1,11 @@
-export const height = (rocketA, rocketB) =>
-  rocketA.height.meters - rocketB.height.meters;
+const height = (rocketA, rocketB) =>
+  rocketB.height.meters - rocketA.height.meters;
 
-export const id = (rocketA, rocketB) => rocketA.id - rocketB.id;
+const firstFlight = (rocketA, rocketB) =>
+  rocketB.first_flight - rocketA.first_flight;
 
-export const costPerLaunch = (rocketA, rocketB) =>
-  rocketA.cost_per_launch - rocketB.cost_per_launch;
-
-export const numberOfLandingLegs = (rocketA, rocketB) =>
-  rocketA.landing_legs.number - rocketB.landing_legs.number;
+const numberOfLandingLegs = (rocketA, rocketB) =>
+  rocketB.landing_legs.number - rocketA.landing_legs.number;
 
 export const filterDataBy = (filter, unsortedData) => {
   const sortedData = unsortedData.sort((rocketA, rocketB) =>
@@ -15,4 +13,16 @@ export const filterDataBy = (filter, unsortedData) => {
   );
 
   return sortedData;
+};
+
+export const rocketFilters = {
+  height: { label: "Height", filterFunc: height },
+  costPerLaunch: {
+    label: "First Fligth",
+    filterFunc: firstFlight,
+  },
+  numberOfLandingLegs: {
+    label: "Number Of Landing Legs",
+    filterFunc: numberOfLandingLegs,
+  },
 };
