@@ -5,7 +5,7 @@ import Countdown from "./Countdown";
 import { displayDate } from "../utils/date";
 import { rocketFilters, filterDataBy } from "../utils/filters";
 
-const CardList = ({ rockets, launchNext }) => {
+const CardList = ({ rockets, launchNext = null }) => {
   const [filter, setFilter] = useState(null);
   const [filteredRockets, setFilteredRockets] = useState(rockets);
 
@@ -34,6 +34,7 @@ const CardList = ({ rockets, launchNext }) => {
         {filteredRockets.map((rocket) => (
           <div key={rocket.id} className="mb-10">
             <Card
+              id={rocket.id}
               name={rocket.name}
               description={rocket.description}
               metaData={[

@@ -1,11 +1,13 @@
 import Pill from "./Pill";
 
-const Card = ({ name, description, metaData }) => {
+const Card = ({ id = false, name, description, metaData }) => {
   return (
     <div className="bg-white rounded-md text-black flex">
-      <div className="bg-black rounded-md py-16 px-32 m-4">
-        <img src="/images/rockets/rocket-1.svg" />
-      </div>
+      {id && (
+        <div className="bg-black rounded-md py-16 px-32 m-4">
+          <img src={`/images/rockets/${id}.svg`} />
+        </div>
+      )}
       <div className="content flex-1 text-left p-10">
         <h2 className="text-2xl font-semibold pb-2">{name}</h2>
         <p>{description}</p>
