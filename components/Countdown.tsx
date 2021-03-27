@@ -1,6 +1,6 @@
 import { useNextLaunch } from "../hooks/useNextLaunch";
 
-const Countdown = ({ launchDate }) => {
+const Countdown: React.VFC<{ launchDate: string }> = ({ launchDate }) => {
   const { days, hours, minutes, seconds } = useNextLaunch();
 
   return (

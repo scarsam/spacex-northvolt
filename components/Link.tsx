@@ -1,19 +1,8 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { LinkTypes } from "../types/Link";
 
-const Link = ({
-  text,
-  href,
-  className,
-  white,
-  large,
-}: {
-  text: string;
-  href: string;
-  className?: string;
-  white?: boolean;
-  large?: boolean;
-}) => {
+const Link: React.VFC<LinkTypes> = ({ text, href, className }) => {
   const { asPath } = useRouter();
 
   return (
@@ -24,9 +13,7 @@ const Link = ({
         }`}
       >
         {text}
-        <span className={`${large ? "text-2xl pl-1" : "text-lg pl-0.5"}`}>
-          &#8594;
-        </span>
+        <span className="text-2xl pl-1">&#8594;</span>
       </a>
     </NextLink>
   );

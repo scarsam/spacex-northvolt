@@ -1,11 +1,10 @@
 import Head from "next/head";
-import { useEffect, useMemo } from "react";
 import { gql } from "@apollo/client";
 import client from "../lib/apollo";
-import Card from "../components/Card";
 import CardList from "../components/CardList";
+import { Rockets } from "../types/generated/Rockets";
 
-export default function Home({ launchNext, rockets }) {
+export default function Home({ launchNext, rockets }: Rockets) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>

@@ -1,4 +1,4 @@
-export const displayDate = (date) => {
+export const displayDate = (date: string) => {
   const newDate = new Date(date);
   const year = newDate.getFullYear();
   const month =

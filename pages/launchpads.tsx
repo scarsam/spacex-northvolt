@@ -3,8 +3,9 @@ import { gql } from "@apollo/client";
 import client from "../lib/apollo";
 import Card from "../components/Card";
 import { displayDistance } from "../utils/displayDistance";
+import { LaunchPads } from "../types/generated/LaunchPads";
 
-export default function Home({ launchpads }) {
+export default function Home({ launchpads }: LaunchPads) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>

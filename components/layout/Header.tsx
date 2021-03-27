@@ -11,14 +11,8 @@ const Header: React.VFC = () => {
       </NextLink>
 
       <nav>
-        <Link white large className="mr-6 text-2xl" href="/" text="Rockets" />
-        <Link
-          white
-          large
-          className="text-2xl"
-          href="/launchpads"
-          text="Launchpads"
-        />
+        <Link className="mr-6 text-2xl" href="/" text="Rockets" />
+        <Link className="text-2xl" href="/launchpads" text="Launchpads" />
       </nav>
     </header>
   );

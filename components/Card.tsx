@@ -1,6 +1,12 @@
 import Pill from "./Pill";
+import { CardTypes } from "../types/Card";
 
-const Card = ({ id = false, name, description, metaData }) => {
+const Card: React.VFC<Partial<CardTypes>> = ({
+  id,
+  name,
+  description,
+  metaData,
+}) => {
   return (
     <div className="bg-white rounded-md text-black flex">
       {id && (
@@ -13,7 +19,7 @@ const Card = ({ id = false, name, description, metaData }) => {
         <p>{description}</p>
         <div className="flex pt-4">
           {metaData.map((data) => (
-            <Pill data={data} />
+            <Pill key={data} data={data} />
           ))}
         </div>
       </div>

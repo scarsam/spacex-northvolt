@@ -1,4 +1,4 @@
-export const remainingTime = (countDownDate) => {
+export const remainingTime = (countDownDate: number) => {
   const now = new Date().getTime();
 
   const distance = countDownDate - now;

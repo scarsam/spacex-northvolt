@@ -1,15 +1,17 @@
-const height = (rocketA, rocketB) =>
+import { FilterByTypes, FilterTypes } from "../types/Filter";
+
+const height = ({ rocketA, rocketB }: FilterTypes) =>
   rocketB.height.meters - rocketA.height.meters;
 
-const firstFlight = (rocketA, rocketB) =>
+const firstFlight = ({ rocketA, rocketB }: FilterTypes) =>
   rocketB.first_flight - rocketA.first_flight;
 
-const numberOfLandingLegs = (rocketA, rocketB) =>
+const numberOfLandingLegs = ({ rocketA, rocketB }: FilterTypes) =>
   rocketB.landing_legs.number - rocketA.landing_legs.number;
 
-export const filterDataBy = (filter, unsortedData) => {
+export const filterDataBy = ({ filter, unsortedData }: FilterByTypes) => {
   const sortedData = unsortedData.sort((rocketA, rocketB) =>
-    filter(rocketA, rocketB),
+    filter({ rocketA, rocketB }),
   );
 
   return sortedData;
