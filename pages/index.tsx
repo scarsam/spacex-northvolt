@@ -29,7 +29,6 @@ export default function Home({ launchNext, rockets }) {
           </p>
         </time>
 
-        <Card />
         <CardList rockets={rockets} />
       </main>
 
@@ -59,7 +58,9 @@ export async function getStaticProps() {
         }
         rockets {
           id
-          cost_per_launch
+          name
+          description
+          first_flight
           height {
             meters
           }
