@@ -22,7 +22,7 @@ export const rocketFilters = {
     filterFunc: firstFlight,
   },
   numberOfLandingLegs: {
-    label: "Number Of Landing Legs",
+    label: "Landing Legs",
     filterFunc: numberOfLandingLegs,
   },
 };
