@@ -2,10 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import { remainingTime } from "../utils/countdown";
 
 const useNextLaunch = (unixEndDate = 1621989370) => {
-  const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [days, setDays] = useState(null);
+  const [hours, setHours] = useState(null);
+  const [minutes, setMinutes] = useState(null);
+  const [seconds, setSeconds] = useState(null);
 
   useEffect(() => {
     const endDate = new Date(unixEndDate * 1000).getTime();
