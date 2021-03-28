@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { remainingTime } from "../utils/countdown";
 
 const useNextLaunch = (unixEndDate = 1621989370) => {
