@@ -4,6 +4,28 @@ import client from "../lib/apollo";
 import CardList from "../components/CardList";
 import { Rockets } from "../types/generated/Rockets";
 
+export const ROCKET_QUERY = gql`
+  query Rockets {
+    launchNext {
+      details
+      launch_date_unix
+      launch_date_local
+    }
+    rockets {
+      id
+      name
+      description
+      first_flight
+      height {
+        meters
+      }
+      landing_legs {
+        number
+      }
+    }
+  }
+`;
+
 export default function Home({ launchNext, rockets }: Rockets) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -21,27 +43,7 @@ export default function Home({ launchNext, rockets }: Rockets) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    query: gql`
-      query Rockets {
-        launchNext {
-          details
-          launch_date_unix
-          launch_date_local
-        }
-        rockets {
-          id
-          name
-          description
-          first_flight
-          height {
-            meters
-          }
-          landing_legs {
-            number
-          }
-        }
-      }
-    `,
+    query: ROCKET_QUERY,
   });
 
   return {

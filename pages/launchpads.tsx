@@ -5,7 +5,22 @@ import Card from "../components/Card";
 import { displayDistance } from "../utils/displayDistance";
 import { LaunchPads } from "../types/generated/LaunchPads";
 
-export default function Home({ launchpads }: LaunchPads) {
+export const LAUNCH_PADS_QUERY = gql`
+  query LaunchPads {
+    launchpads {
+      location {
+        longitude
+        latitude
+        name
+      }
+      name
+      details
+      id
+    }
+  }
+`;
+
+export default function LaunchPadsPage({ launchpads }: LaunchPads) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -35,20 +50,7 @@ export default function Home({ launchpads }: LaunchPads) {
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    query: gql`
-      query LaunchPads {
-        launchpads {
-          location {
-            longitude
-            latitude
-            name
-          }
-          name
-          details
-          id
-        }
-      }
-    `,
+    query: LAUNCH_PADS_QUERY,
   });
 
   return {

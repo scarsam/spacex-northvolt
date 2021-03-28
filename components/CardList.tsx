@@ -12,7 +12,6 @@ const CardList: React.VFC<Rockets> = ({ rockets, launchNext }) => {
 
   const handleFilter = (event) => {
     const { filterFunc } = rocketFilters[event.target.value];
-
     setFilter(event.target.value);
     const result = filterDataBy({ filter: filterFunc, unsortedData: rockets });
     setFilteredRockets([...result]);
