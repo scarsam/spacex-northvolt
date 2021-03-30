@@ -1,4 +1,4 @@
-import { SelectTypes } from "../types/Select";
+import { SelectTypes } from "../src/types/Select";
 
 const Select: React.FC<SelectTypes> = ({
   label,

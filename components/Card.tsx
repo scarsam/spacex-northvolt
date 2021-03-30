@@ -1,5 +1,5 @@
 import Pill from "./Pill";
-import { CardTypes } from "../types/Card";
+import { CardTypes } from "../src/types/Card";
 
 const Card: React.VFC<Partial<CardTypes>> = ({
   showImage,

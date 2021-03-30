@@ -8,8 +8,8 @@ import Select from "../components/Select";
 import Countdown from "../components/Countdown";
 import { rocketFilters, filterDataBy } from "../utils/filters";
 import { displayDate } from "../utils/date";
-import { Rockets } from "../types/generated/Rockets";
-import { Rockets_rockets } from "../types/generated/Rockets";
+import { Rockets } from "../src/types/generated/Rockets";
+import { Rockets_rockets } from "../src/types/generated/Rockets";
 
 export const ROCKET_QUERY = gql`
   query Rockets {

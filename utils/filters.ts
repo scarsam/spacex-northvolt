@@ -1,4 +1,4 @@
-import { FilterByTypes, FilterTypes } from "../types/Filter";
+import { FilterByTypes, FilterTypes } from "../src/types/Filter";
 
 const height = ({ rocketA, rocketB }: FilterTypes) =>
   rocketB.height.meters - rocketA.height.meters;

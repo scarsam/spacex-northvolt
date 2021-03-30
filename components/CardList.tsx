@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { CardListTypes } from "../types/CardList";
+import { CardListTypes } from "../src/types/CardList";
 
 const CardList: React.VFC<CardListTypes> = ({
   showImage = true,

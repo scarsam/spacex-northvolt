@@ -2,8 +2,8 @@ import Head from "next/head";
 import { gql } from "@apollo/client";
 import client from "../lib/apollo";
 import { displayDistance } from "../utils/displayDistance";
-import { LaunchPads } from "../types/generated/LaunchPads";
-import { LaunchPads_launchpads } from "../types/generated/LaunchPads";
+import { LaunchPads } from "../src/types/generated/LaunchPads";
+import { LaunchPads_launchpads } from "../src/types/generated/LaunchPads";
 import Container from "../components/layout/Container";
 import CardList from "../components/CardList";
 
