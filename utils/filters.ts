@@ -4,7 +4,8 @@ const height = ({ rocketA, rocketB }: FilterTypes) =>
   rocketB.height.meters - rocketA.height.meters;
 
 const firstFlight = ({ rocketA, rocketB }: FilterTypes) =>
-  rocketB.first_flight - rocketA.first_flight;
+  new Date(rocketB.first_flight).getTime() -
+  new Date(rocketA.first_flight).getTime();
 
 const numberOfLandingLegs = ({ rocketA, rocketB }: FilterTypes) =>
   rocketB.landing_legs.number - rocketA.landing_legs.number;
