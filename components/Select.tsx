@@ -4,7 +4,7 @@ const Select: React.FC<SelectTypes> = ({
   label,
   value,
   onChange,
-  children,
+  filterOptions,
 }) => {
   return (
     <label className="relative inline-flex items-center">
@@ -22,11 +22,15 @@ const Select: React.FC<SelectTypes> = ({
         />
       </svg>
       <select
-        className="text-black px-4 py-2 pr-9 rounded-full focus:outline-none appearance-none"
+        className="text-black px-4 py-2 pr-9 rounded-full focus:outline-none appearance-none flex-1 sm:flex-auto"
         value={value}
         onChange={onChange}
       >
-        {children}
+        {Object.entries(filterOptions).map(([filterName, values]) => (
+          <option key={filterName} value={filterName}>
+            {values.label}
+          </option>
+        ))}
       </select>
     </label>
   );

@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import LaunchPadsPage from "../pages/launchpads";
 
 jest.mock("../lib/apollo.ts", () => ({

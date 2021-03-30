@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { gql } from "@apollo/client";
 import client from "../lib/apollo";
-import Card from "../components/Card";
 import { displayDistance } from "../utils/displayDistance";
 import { LaunchPads } from "../types/generated/LaunchPads";
+import { LaunchPads_launchpads } from "../types/generated/LaunchPads";
+import Container from "../components/layout/Container";
+import CardList from "../components/CardList";
 
 export const LAUNCH_PADS_QUERY = gql`
   query LaunchPads {
@@ -28,22 +30,18 @@ export default function LaunchPadsPage({ launchpads }: LaunchPads) {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <main className="px-20 container">
-        {launchpads.map((launchpad) => (
-          <div key={launchpad.id} className="mb-10">
-            <Card
-              name={launchpad.name}
-              description={launchpad.details}
-              metaData={[
-                `${displayDistance(
-                  launchpad.location.longitude,
-                  launchpad.location.latitude,
-                )}km from factory Ett`,
-              ]}
-            />
-          </div>
-        ))}
-      </main>
+      <Container>
+        <CardList
+          showImage={false}
+          data={launchpads}
+          metaData={(launchpad: LaunchPads_launchpads) => [
+            `${displayDistance(
+              launchpad?.location?.longitude,
+              launchpad?.location?.latitude,
+            )}km from factory Ett`,
+          ]}
+        />
+      </Container>
     </div>
   );
 }

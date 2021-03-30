@@ -1,46 +1,21 @@
-import { useState } from "react";
 import Card from "./Card";
-import Select from "./Select";
-import Countdown from "./Countdown";
-import { displayDate } from "../utils/date";
-import { rocketFilters, filterDataBy } from "../utils/filters";
-import { Rockets } from "../types/generated/Rockets";
+import { CardListTypes } from "../types/CardList";
 
-const CardList: React.VFC<Rockets> = ({ rockets, launchNext }) => {
-  const [filter, setFilter] = useState("");
-  const [filteredRockets, setFilteredRockets] = useState(rockets);
-
-  const handleFilter = (event) => {
-    const { filterFunc } = rocketFilters[event.target.value];
-    setFilter(event.target.value);
-    const result = filterDataBy({ filter: filterFunc, unsortedData: rockets });
-    setFilteredRockets([...result]);
-  };
-
+const CardList: React.VFC<CardListTypes> = ({
+  showImage = true,
+  data,
+  metaData,
+}) => {
   return (
-    <div className="max-w-4xl m-auto">
-      <div className="flex mb-4 justify-between items-center">
-        <Countdown launchDate={launchNext.launch_date_local} />
-        <Select label="Sort by" value={filter} onChange={handleFilter}>
-          {Object.entries(rocketFilters).map(([filterName, values]) => (
-            <option key={filterName} value={filterName}>
-              {values.label}
-            </option>
-          ))}
-        </Select>
-      </div>
-
-      {filteredRockets.map((rocket) => (
-        <div key={rocket.id} className="mb-10">
+    <div className="max-w-full md:max-w-4xl m-auto">
+      {data.map((item) => (
+        <div key={item?.id} className="mb-10">
           <Card
-            id={rocket.id}
-            name={rocket.name}
-            description={rocket.description}
-            metaData={[
-              `${rocket.height.meters} meters`,
-              `${rocket.landing_legs.number} landing legs`,
-              `First flight ${displayDate(rocket.first_flight)}`,
-            ]}
+            showImage={showImage}
+            id={item?.id}
+            name={item?.name}
+            description={item?.description || item?.details}
+            metaData={metaData(item)}
           />
         </div>
       ))}
